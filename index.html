@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Password Generator</title>
+    <script defer>
+      function handleOnClick() {
+        const generatedPassword = document.querySelector(".generated-password");
+        const alpha = "abcdefghijklmnopqrstuvwxyz";
+        const calpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const num = "1234567890";
+        const specials = ",.!@#$%^&*";
+        const options = [
+          alpha,
+          alpha,
+          alpha,
+          calpha,
+          calpha,
+          num,
+          num,
+          specials,
+        ];
+        let opt, choose;
+        let pass = "";
+        for (let i = 0; i < 8; i++) {
+          opt = Math.floor(Math.random() * options.length);
+          choose = Math.floor(Math.random() * options[opt].length);
+          pass = pass + options[opt][choose];
+          options.splice(opt, 1);
+        }
+        generatedPassword.textContent = pass;
+      }
+    </script>
+  </head>
+  <body>
+    <h1 class="title">Random Password Generator</h1>
+    <div class="generator-container">
+      <button class="button-generate-password" onclick="handleOnClick()">
+        Generate
+      </button>
+      <h2 class="generated-password"></h2>
+    </div>
+  </body>
+</html>
